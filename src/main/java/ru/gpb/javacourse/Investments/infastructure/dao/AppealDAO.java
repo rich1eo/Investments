@@ -19,13 +19,18 @@ public class AppealDAO implements AppealDatabase {
     }
 
     @Override
-    public void insertMoney(String security, int id) {
-        investmentsMapper.insertSecurity(security, id);
+    public void saveMoney(int money, int id) {
+        investmentsMapper.insertMoney(money, id);
     }
 
     @Override
-    public boolean selectSecurity(String security, int id) {
-        return investmentsMapper.selectSecurity(security, id);
+    public boolean getSecurity(String security, int id) {
+        return investmentsMapper.getSecurity(security, id);
+    }
+
+    @Override
+    public void saveSecurity(String security, int id) {
+        investmentsMapper.saveSecurity(security, id);
     }
 
 

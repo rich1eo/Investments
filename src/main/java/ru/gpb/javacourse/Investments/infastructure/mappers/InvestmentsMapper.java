@@ -10,11 +10,16 @@ public interface InvestmentsMapper {
         return 100;
     }
 
-    default void insertSecurity(String security, int id) {
-        //логика работы с базой, сохранение бумаг
+    default void insertMoney(int money, int id) {
+        //логика работы с базой, сохранение денег
     }
 
-    default boolean selectSecurity(String security, int id) {
+    default boolean getSecurity(String security, int id) {
+        //логика с базой, узнать есть ли такая облигация у клиента
         return false;
+    }
+
+    default void saveSecurity(String security, int id) {
+        //логика работы с базой, сохранение облигаций
     }
 }

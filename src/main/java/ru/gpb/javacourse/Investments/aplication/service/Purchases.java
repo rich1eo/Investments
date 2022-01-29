@@ -16,11 +16,17 @@ public class Purchases {
 
     public void assetPurchases(Investment investment) throws PurchasesException {
         int amountOfMoney = appealDAO.getMoney(investment.getClient().getId());
-        int priceOfTheSecurity = 0;//написать логику получение цены на бумагу.
+        int priceOfTheSecurity = 10;//написать логику получение цены на бумагу.
         if (priceOfTheSecurity > amountOfMoney) {
             throw new PurchasesException("нехватает денег");
         }
-        appealDAO.insertMoney(investment.getNameOfTheSecurity(), investment.getClient().getId());
+        amountOfMoney -= priceOfTheSecurity;
+        saveSecurity(amountOfMoney, investment.getClient().getId(), investment.getNameOfTheSecurity());
+    }
+
+    public void saveSecurity(int amountOfMoney, int id, String nameOfTheSecurity) {
+        appealDAO.saveMoney(amountOfMoney, id);
+        appealDAO.saveSecurity(nameOfTheSecurity, id);
     }
 
 
