@@ -1,7 +1,7 @@
 package ru.gpb.javacourse.Investments.aplication.service;
 
 import org.springframework.stereotype.Service;
-import ru.gpb.javacourse.Investments.aplication.Exception.SaleException;
+import ru.gpb.javacourse.Investments.aplication.Exception.errorType;
 import ru.gpb.javacourse.Investments.aplication.dto.Investment;
 import ru.gpb.javacourse.Investments.infastructure.dao.AppealDAO;
 
@@ -13,12 +13,13 @@ public class Sale {
         this.appealDAO = appealDAO;
     }
 
-    public void saleOfSecurity(Investment investment) throws SaleException {
+    public String saleOfSecurity(Investment investment) {
         boolean security = appealDAO.getSecurity(investment.getNameOfTheSecurity(), investment.getClient().getId());
-        if (security) {
-            throw new SaleException("нет у клиента в наличии такой ценной бумаги");
+        if (!security) {
+            return errorType.SALE_EXCEPTION.getMessage();
         }
         saveFunds(investment.getNameOfTheSecurity(), investment.getClient().getId());
+        return errorType.NO_ERRORS.getMessage();
     }
 
     public void saveFunds(String nameOfTheSecurity, int id) {
