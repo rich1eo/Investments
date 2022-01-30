@@ -1,4 +1,4 @@
-package ru.gpb.javacourse.Investments.aplication.service;
+package ru.gpb.javacourse.Investments.aplication.service.information;
 
 import org.springframework.stereotype.Service;
 import ru.gpb.javacourse.Investments.aplication.Exception.errorType;

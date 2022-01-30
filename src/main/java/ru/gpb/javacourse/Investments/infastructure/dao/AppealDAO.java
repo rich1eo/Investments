@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import ru.gpb.javacourse.Investments.aplication.workingWithTheDatabase.AppealDatabase;
 import ru.gpb.javacourse.Investments.infastructure.mappers.InvestmentsMapper;
 
+import java.util.List;
+
 @Component
 public class AppealDAO implements AppealDatabase {
     private InvestmentsMapper investmentsMapper;
@@ -36,6 +38,11 @@ public class AppealDAO implements AppealDatabase {
     @Override
     public boolean checkBalance(String login, int password) {
         return investmentsMapper.checkBalance(login, password);
+    }
+
+    @Override
+    public List<String> getPossession(int id) {
+        return null;
     }
 
 

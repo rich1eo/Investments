@@ -2,6 +2,8 @@ package ru.gpb.javacourse.Investments.infastructure.mappers;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface InvestmentsMapper {
 
@@ -26,5 +28,9 @@ public interface InvestmentsMapper {
     default boolean checkBalance(String login, int password) {
         //логика работы с базой, просмотр есть ли такой юзер
         return false;
+    }
+
+    default List<String> getPossession(int id) {
+        return null;
     }
 }

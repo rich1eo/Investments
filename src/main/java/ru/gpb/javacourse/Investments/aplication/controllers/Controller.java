@@ -5,29 +5,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.gpb.javacourse.Investments.aplication.Exception.errorType;
+import ru.gpb.javacourse.Investments.aplication.dto.Client;
 import ru.gpb.javacourse.Investments.aplication.dto.Investment;
-import ru.gpb.javacourse.Investments.aplication.service.Purchases;
-import ru.gpb.javacourse.Investments.aplication.service.Sale;
+import ru.gpb.javacourse.Investments.aplication.service.intermediary.IntermediaryOfWork;
 
 @RestController
 public class Controller {
+
     @Autowired
-    private Sale sale;
-    @Autowired
-    private Purchases purchases;
+    private IntermediaryOfWork intermediaryOfWork;
 
     @PostMapping("/investment/acquisitionOfInvestments")
     public String acquisitionOfInvestments(@RequestBody Investment investment) {
         switch (investment.getTypeOfPurchaseAndSale()) {
             case "assetPurchases" -> {
-                return purchases.assetPurchases(investment);
+                return intermediaryOfWork.assetPurchases(investment);
             }
             case "saleOfSecurity" -> {
-                return sale.saleOfSecurity(investment);
+                return intermediaryOfWork.saleOfSecurity(investment);
             }
             default -> {
                 return errorType.UNKNOWN_TYPE_OF_SERVICE.getMessage();
             }
         }
+    }
+    @PostMapping("/investment/totalPriceOfAllSecurities")
+    public int totalPriceOfAllSecurities(Client client) {
+       return intermediaryOfWork.chekPossession(client.getId());
     }
 }
