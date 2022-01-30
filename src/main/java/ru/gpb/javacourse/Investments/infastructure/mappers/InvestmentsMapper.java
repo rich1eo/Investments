@@ -22,4 +22,9 @@ public interface InvestmentsMapper {
     default void saveSecurity(String security, int id) {
         //логика работы с базой, сохранение облигаций
     }
+
+    default boolean checkBalance(String login, int password) {
+        //логика работы с базой, просмотр есть ли такой юзер
+        return false;
+    }
 }

@@ -33,5 +33,10 @@ public class AppealDAO implements AppealDatabase {
         investmentsMapper.saveSecurity(security, id);
     }
 
+    @Override
+    public boolean checkBalance(String login, int password) {
+        return investmentsMapper.checkBalance(login, password);
+    }
+
 
 }
