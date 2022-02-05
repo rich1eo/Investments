@@ -12,8 +12,8 @@ public class Bond {
     private String secId; //тикер
     private String shortName; // полное имя
     private boolean isTraded; // торгуется ли сейчас
-    private String type; // тип: офз, корпоративная
-    private int emitentId; // эмитент
+    private String type; // тип: офз, корпоративная //AK: завяжем логику на BOARDID?
+    private int emitentId; // эмитент  //AK: из какого поля API взять?
     private String boardId; // режим торгов для офз T+1, для Т+0 муниципальные и корпоративные облигации
     private double price; // цена
     private double yieldSec; //доходность в процентах
@@ -23,7 +23,7 @@ public class Bond {
     private LocalDateTime issueDate; // дата начала торгов
     private LocalDateTime couponDate; // дата выплаты следующего купона
     private double couponValue; // сумма выплаты купона
-    private boolean earlyRepayment; // есть ли досрочное погашение
+    private boolean earlyRepayment; // есть ли досрочное погашение //AK:из какоого поля API взять?
     private LocalDateTime tradedDate; // информация о дате последней торговой сессии
 
     @OneToMany(mappedBy = "bond")
