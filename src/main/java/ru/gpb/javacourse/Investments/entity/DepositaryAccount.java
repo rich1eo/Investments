@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -18,7 +19,7 @@ public class DepositaryAccount {
     @Column(name = "client_id")
     private Integer clientId;
     @Basic
-    @Column(name = "bond_id")
+    @Column(name = "bond_id", insertable = false, updatable = false)
     private Integer bondId;
     @Basic
     @Column(name = "trade_amount")
@@ -35,6 +36,11 @@ public class DepositaryAccount {
     @ManyToOne
     @JoinColumn(name = "bond_id", referencedColumnName = "bond_id")
     private Bond bondByBondId;
+
+    @PrePersist
+    private void init() {
+        tradeDate = Timestamp.valueOf(LocalDateTime.now());
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -3,9 +3,9 @@ package ru.gpb.javacourse.Investments.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.gpb.javacourse.Investments.entity.Bond;
+import ru.gpb.javacourse.Investments.entity.DepositaryAccount;
 import ru.gpb.javacourse.Investments.entity.Price;
 import ru.gpb.javacourse.Investments.service.BondService;
-import ru.gpb.javacourse.Investments.service.DepoAccountService;
 import ru.gpb.javacourse.Investments.service.PriceService;
 
 import java.util.List;
@@ -15,7 +15,6 @@ import java.util.List;
 public class TransferController {
     private final BondService bondService;
     private final PriceService priceService;
-    private final DepoAccountService depoAccountService;
 
     @GetMapping("/")
     public List<Bond> bonds() {
@@ -28,16 +27,13 @@ public class TransferController {
     }
 
     @PostMapping("/sell")
-    public void sellByTicker(@RequestParam Integer clientId, @RequestParam Integer bondId, @RequestParam Double price,
-                             @RequestParam Integer amount) {
-
+    public void sellByTicker(@RequestParam Integer clientId, @RequestParam DepositaryAccount depositaryAccount) {
+        bondService.sellByTicker(clientId, depositaryAccount);
     }
 
     @PostMapping("/buy")
-    public void buyByTicker(@RequestParam Integer clientId, @RequestParam Integer secId, @RequestParam Double price,
-                            @RequestParam Integer amount) {
-
-
+    public void buyByTicker(@RequestParam Integer clientId, @RequestParam DepositaryAccount depositaryAccount) {
+        bondService.buyByTicker(clientId, depositaryAccount);
     }
 
     @PostMapping("/transfer")

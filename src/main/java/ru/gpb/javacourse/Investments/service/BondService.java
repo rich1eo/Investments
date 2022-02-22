@@ -14,19 +14,20 @@ import java.util.List;
 public class BondService {
     private final BondRepo bondRepo;
     private final DepositaryAccountRepo depositaryAccountRepo;
-    private final DepositaryAccount depositaryAccount;
 
     public List<Bond> listBonds() {
         return bondRepo.findAll();
     }
 
-    public void buyByTicker(Integer clientId, String secId, Integer amount, Double price) {
-        Bond bond = bondRepo.findBondBySecId(secId);
-        depositaryAccount.setBondByBondId(bond);
+    public void buyByTicker(Integer clientId, DepositaryAccount depositaryAccount) {
         depositaryAccount.setClientId(clientId);
-        depositaryAccount.setDirection("Buy");
-        depositaryAccount.setTradeAmount(amount);
-        depositaryAccount.setTradePrice(price);
+        depositaryAccount.setDirection("buy");
+        depositaryAccountRepo.save(depositaryAccount);
+    }
+
+    public void sellByTicker(Integer clientId, DepositaryAccount depositaryAccount) {
+        depositaryAccount.setClientId(clientId);
+        depositaryAccount.setDirection("sell");
         depositaryAccountRepo.save(depositaryAccount);
     }
 }

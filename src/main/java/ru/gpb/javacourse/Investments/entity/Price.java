@@ -15,7 +15,7 @@ public class Price {
     @Column(name = "price_id")
     private int priceId;
     @Basic
-    @Column(name = "bond_id")
+    @Column(name = "bond_id", insertable = false, updatable = false)
     private Integer bondId;
     @Basic
     @Column(name = "bid")
